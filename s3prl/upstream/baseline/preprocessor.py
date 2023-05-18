@@ -178,7 +178,7 @@ class OnlinePreprocessor(torch.nn.Module):
 
         wav = wavs.unsqueeze(2)
         shape = wavs.size()
-        complx = self._stft(wavs.reshape(-1, shape[-1]), window=self._window)
+        complx = self._stft(wavs.reshape(-1, shape[-1]), window=self._window, return_complex=False)
         complx = complx.reshape(shape[:-1] + complx.shape[-3:])
         # complx: (*, channel_size, feat_dim, max_len, 2)
         linear, phase = self._magphase(complx)
